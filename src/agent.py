@@ -173,6 +173,7 @@ class SACAgent:
         self,
         obs_dim: int,
         act_dim: int,
+        batch_size: int = 256,
         gamma: float = 0.99,
         tau: float = 0.005,
         lr_actor: float = 3e-4,
@@ -185,6 +186,7 @@ class SACAgent:
     ):
         self.obs_dim = obs_dim
         self.act_dim = act_dim
+        self.batch_size = batch_size
         self.gamma = gamma
         self.tau = tau
 
