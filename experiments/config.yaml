@@ -1,0 +1,72 @@
+surface:
+  n_rows: 7
+  n_cols: 6
+  num_blocks: 42
+  length_mm: 2000.0
+  width_mm: 900.0
+  max_travel_mm: 250.0
+  min_height_mm: 0.0
+  max_velocity_mm_s: 25.0
+  dt_seconds: 1.0
+  sensor_rows: 14
+  sensor_cols: 12
+  self_locking_hold_energy: 0.0  # Zero-power hold via self-locking transmissions
+  mechanical_work_coeff: 0.004   # J / (kg * mm) for vertical displacement work
+
+body:
+  nominal_weight_kg: 75.0
+  nominal_height_m: 1.75
+  nominal_shoulder_width_m: 0.44
+  nominal_hip_width_m: 0.36
+  postures:
+    - "supine"
+    - "prone"
+    - "left_lateral"
+    - "right_lateral"
+    - "reclined_supine"
+    - "fetal"
+  tissue_stiffness_kpa_mm: 0.35  # Biomechanical soft tissue contact stiffness
+  capillary_closure_threshold_mmhg: 32.0  # Capillary ischemia threshold (~4.27 kPa)
+  asleep_correction_frequency_hz: 0.0004  # ~1 correction every 2500 s
+  awake_correction_frequency_hz: 0.1      # Active proprioceptive postural adjustment
+  rem_correction_frequency_hz: 0.0        # Motor stage inhibition (atonia)
+  arousal_jerk_threshold_mm_s3: 40.0      # Vestibular/tactile arousal threshold
+  arousal_velocity_threshold_mm_s: 18.0
+
+reward:
+  weight_comfort: 1.2
+  weight_alignment: 0.8
+  weight_energy: 0.04
+  weight_arousal: 3.0
+  weight_smoothness: 0.15
+  multi_rate:
+    comfort_rate_hz: 1.0      # High-rate feedback tick
+    arousal_rate_hz: 0.0004   # Slow sleep return path
+    energy_horizon: "cumulative"
+
+action_space:
+  mode: "crystallised_plus_residual"  # Options: 'crystallised_plus_residual', 'end_to_end', 'crystallised_only'
+  residual_max_mm: 35.0               # Max bound on learned residual policy: [-35, +35] mm
+  crystallised_baseline_scale: 1.0
+
+agent:
+  algorithm: "SAC"
+  gamma: 0.99
+  tau: 0.005
+  lr_actor: 0.0003
+  lr_critic: 0.0003
+  lr_alpha: 0.0003
+  hidden_dims: [256, 256]
+  batch_size: 128
+  buffer_capacity: 100000
+  init_temperature: 0.2
+  target_entropy_ratio: -1.0  # target entropy = -dim(A)
+
+training:
+  seed: 42
+  num_episodes: 200
+  max_steps_per_episode: 40
+  eval_frequency: 10
+  eval_episodes: 5
+  checkpoint_dir: "checkpoints"
+  figures_dir: "figures"
