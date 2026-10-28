@@ -1,7 +1,7 @@
 """
 action_space.py: Action Space Engineering for Intelligent Adaptive Surfaces.
 
-Implements WATER's core design doctrine:
+Implements the core design doctrine:
 "Action space engineering: the seam between mechanism and model is something to DESIGN."
 
 Decomposes the 42-dimensional actuation into:
@@ -33,7 +33,7 @@ from .body_model import BodyParameters, POSTURE_NAMES
 
 class ActionSpaceMode(str, enum.Enum):
     """Action space representation mode."""
-    CRYSTALLISED_PLUS_RESIDUAL = "crystallised_plus_residual"  # WATER's hybrid architecture
+    CRYSTALLISED_PLUS_RESIDUAL = "crystallised_plus_residual"  # Proposed hybrid architecture
     END_TO_END = "end_to_end"                                  # Naive RL learning full 42-D profile
     CRYSTALLISED_ONLY = "crystallised_only"                    # Pure analytical heuristic (no RL)
 

@@ -6,7 +6,7 @@ Generates:
 2. Tactile Interface Pressure Heatmap (14x12 sensor grid) with capillary ischemia threshold.
 3. Sagittal Spine Alignment Cross-Section (block profile vs neutral curvature).
 4. Multi-rate Reward Temporal Breakdown (Fast tick vs slow arousal return path).
-5. Cross-Person Few-Shot Adaptation Learning Curves (WATER architecture vs baselines).
+5. Cross-Person Few-Shot Adaptation Learning Curves (Proposed architecture vs baselines).
 """
 
 from __future__ import annotations
@@ -145,14 +145,14 @@ def plot_action_space_comparison(
 ) -> plt.Figure:
     """Plot learning and safety comparison across action space engineering paradigms:
     
-    1. Crystallised + Learned Residual (WATER Architecture)
+    1. Crystallised + Learned Residual (Proposed Architecture)
     2. Naive End-to-End RL
     3. Crystallised Baseline Heuristic
     """
     fig, axes = plt.subplots(2, 2, figsize=(14, 10), constrained_layout=True)
 
     colors = {
-        "Crystallised + Residual (WATER)": "#1f77b4",
+        "Crystallised + Residual (Proposed)": "#1f77b4",
         "End-to-End RL": "#d62728",
         "Crystallised Baseline (Heuristic)": "#2ca02c",
     }
@@ -234,7 +234,7 @@ def plot_cross_person_adaptation_curves(
         "o-",
         color="#1f77b4",
         linewidth=2.5,
-        label="Crystallised + Residual (WATER)",
+        label="Crystallised + Residual (Proposed)",
     )
     ax1.plot(
         episodes,
@@ -275,7 +275,7 @@ def plot_cross_person_adaptation_curves(
         "o-",
         color="#1f77b4",
         linewidth=2.5,
-        label="Crystallised + Residual (WATER)",
+        label="Crystallised + Residual (Proposed)",
     )
     ax2.plot(
         episodes,

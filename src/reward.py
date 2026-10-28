@@ -1,7 +1,7 @@
 """
 reward.py: Multi-Rate Multi-Objective Reward Function for Adaptive Surfaces.
 
-Encapsulates WATER's core physical control philosophy:
+Encapsulates the core physical control philosophy:
 1. Comfort: Minimizing pressure variance across cutaneous contact areas and penalizing
    peak pressures exceeding the capillary closing threshold (32 mmHg / 4.27 kPa).
 2. Alignment: Penalizing deviation from neutral spinal biomechanics.

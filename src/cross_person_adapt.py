@@ -7,7 +7,7 @@ generalizes across diverse human bodies:
 - Evaluates rapid adaptation on an unseen N-th test subject.
 - Compares four foundational control strategies:
     1. Zero-shot Crystallised Baseline: Pure analytical physics (0 episodes, verifiable safety).
-    2. Crystallised + Residual (WATER): Adapts in 5-10 episodes.
+    2. Crystallised + Residual: Adapts in 5-10 episodes.
     3. Fine-tuned End-to-End RL: Pre-trained without crystallised prior, fine-tuned.
     4. Scratch End-to-End RL: Trained entirely from scratch on the target subject.
 
@@ -235,7 +235,7 @@ def run_cross_person_experiment(
     )
     print(f"Zero-Shot Crystallised Baseline Reward on Target: {zero_shot_crystallised['mean_reward']:.2f}")
 
-    # 6. Adaptation Trajectory: Crystallised + Residual (WATER Architecture)
+    # 6. Adaptation Trajectory: Crystallised + Residual Architecture
     print(f"Adapting Crystallised + Residual Agent on target ({n_adapt_episodes} episodes)...")
     history_crys_res = adapt_agent_to_subject(
         env=env_crys_res,

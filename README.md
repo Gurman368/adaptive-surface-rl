@@ -5,14 +5,14 @@
 [![Gymnasium](https://img.shields.io/badge/Gymnasium-v0.28+-green.svg)](https://gymnasium.farama.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Research-Grade Control Architecture for Intelligent Robotic Surfaces (WATER Robotics 42-Block Architecture)**  
+> **Research-Grade Control Architecture for Intelligent Robotic Surfaces (42-Block Architecture)**  
 > *Demonstrating Bio-Physical Intelligence, Action Space Decomposition (Mechanism vs. Model), and Multi-Rate Human-in-the-Loop Simulation.*
 
 ---
 
 ## Executive Summary & Research Philosophy
 
-Adaptive robotic surfaces—such as the intelligent beds and chairs pioneered by **WATER Robotics** ([water.bio](https://water.bio))—represent a paradigm shift in physical human-robot interaction. Rather than interacting with rigid, passive furniture, a human rests on a matrix of **42 independently actuated vertical blocks** ($7 \times 6$ grid) offering **250 mm of travel** per actuator.
+Adaptive robotic surfaces—such as multi-actuator intelligent beds and chairs—represent a paradigm shift in physical human-robot interaction. Rather than interacting with rigid, passive furniture, a human rests on a matrix of **42 independently actuated vertical blocks** ($7 \times 6$ grid) offering **250 mm of travel** per actuator.
 
 In this environment, conventional robotic control models fail because **the human body is simultaneously the plant, the sensor, and the compensator in the control loop**:
 1. **The Plant**: The viscoelastic mass of musculoskeletal tissue and skeletal kinematics deforms the surface, establishing a coupled biomechanical equilibrium.
@@ -30,7 +30,7 @@ This repository implements a complete, research-grade Reinforcement Learning fra
 
 ## Key Insight: Action Space Engineering
 
-> *"Action space engineering: the seam between mechanism and model is something to DESIGN. Crystallise what the environment holds constant (gravity → zero-power hold via self-locking transmissions); spend the model on what varies (individual body compliance and posture). "* — **WATER Robotics**
+> *"Action space engineering: the seam between mechanism and model is something to DESIGN. Crystallise what the environment holds constant (gravity → zero-power hold via self-locking transmissions); spend the model on what varies (individual body compliance and posture). "*
 
 Naive reinforcement learning treats the 42 block heights as an arbitrary 42-dimensional continuous vector $\mathbf{a} \in \mathbb{R}^{42}$ learned entirely end-to-end. In physical medical surfaces, this causes catastrophic sample inefficiency, extreme interface shear, and dangerous ischemic pressure spikes during exploration.
 
@@ -161,7 +161,7 @@ Comparison of training dynamics across 50 episodes on nominal subject ($75\text{
 
 | Architecture / Action Space | Asymptotic Return | Peak Pressure (mmHg) | Pressure Var ($\text{mmHg}^2$) | Actuator Work | Arousals/Ep |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Crystallised + Residual (WATER)** | **-4.2** | **23.1** | **12.4** | **0.08** | **0.2** |
+| **Crystallised + Residual (Proposed)** | **-4.2** | **23.1** | **12.4** | **0.08** | **0.2** |
 | Pre-Trained End-to-End Fine-Tuning | -18.7 | 34.2 | 38.6 | 0.31 | 1.8 |
 | Scratch End-to-End Training | -34.5 | 44.8 | 62.1 | 0.49 | 3.4 |
 | Zero-Shot Crystallised Heuristic | -12.1 | 27.5 | 22.8 | 0.00 | 0.0 |
@@ -178,7 +178,7 @@ Evaluating transfer capability from an $N-1$ subject cohort to an unseen target 
 
 | Adaptation Method | Zero-Shot Return | 5-Episode Return | 10-Episode Return | Final Peak Pressure (mmHg) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Crystallised + Residual (WATER)** | **-11.8** | **-5.6** | **-4.3** | **24.2** |
+| **Crystallised + Residual (Proposed)** | **-11.8** | **-5.6** | **-4.3** | **24.2** |
 | Pre-Trained End-to-End Fine-Tuning | -38.2 | -24.1 | -17.4 | 33.8 |
 | Scratch End-to-End Training | -52.0 | -36.5 | -28.9 | 41.5 |
 | Zero-Shot Crystallised Baseline | -11.8 | -11.8 | -11.8 | 28.1 |
@@ -186,7 +186,7 @@ Evaluating transfer capability from an $N-1$ subject cohort to an unseen target 
 ```
 Episode Return on Held-Out Subject (BMI = 33.1)
   0 ───────────────────────────── Target Comfort Upper Bound
- -5 ─────────╭─────────────────── Crystallised + Residual (WATER) [Converged in 6-8 ep]
+ -5 ─────────╭─────────────────── Crystallised + Residual (Proposed) [Converged in 6-8 ep]
 -10 ─────────┼─────────────────── Zero-Shot Crystallised Baseline [Instant, Physics]
 -15 ─────────│─────────╭───────── Fine-Tuned End-to-End
 -20 ─────────│─────────│─────────
@@ -241,7 +241,7 @@ adaptive-surface-rl/
 - Gymnasium $\ge 0.28.0$
 
 ```bash
-git clone https://github.com/water-robotics/adaptive-surface-rl.git
+git clone https://github.com/Gurman368/adaptive-surface-rl.git
 cd adaptive-surface-rl
 pip install -r requirements.txt
 ```
@@ -279,12 +279,11 @@ In medical and physical support robotics, standard RL exploration poses severe c
 ## Citation & References
 
 ```bibtex
-@article{water_surface_rl_2026,
+@article{adaptive_surface_rl_2026,
   title   = {Reinforcement Learning for Adaptive Surface Control: Action Space Engineering and Multi-Rate Reward Design},
-  author  = {Bio-Physical Intelligence Research Group},
-  journal = {WATER Robotics Technical Report Series},
-  year    = {2026},
-  url     = {https://water.bio}
+  author  = {Avtar, Gurman},
+  journal = {Preprint},
+  year    = {2026}
 }
 ```
 

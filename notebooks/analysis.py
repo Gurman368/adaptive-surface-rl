@@ -181,7 +181,7 @@ def print_markdown_summary_table(
     e2e_scr_10 = e2e_scr_hist[9]["mean_reward"] if len(e2e_scr_hist) > 9 else e2e_scr_hist[-1]["mean_reward"]
     e2e_scr_p = e2e_scr_hist[-1]["mean_peak_pressure_mmhg"]
 
-    md_lines.append(f"| **Crystallised + Residual (WATER)** | {z_shot:.1f} | **{crys_5:.1f}** | **{crys_10:.1f}** | **{crys_p:.1f}** |")
+    md_lines.append(f"| **Crystallised + Residual (Proposed)** | {z_shot:.1f} | **{crys_5:.1f}** | **{crys_10:.1f}** | **{crys_p:.1f}** |")
     md_lines.append(f"| Pre-Trained End-to-End Fine-Tuning | N/A | {e2e_pre_5:.1f} | {e2e_pre_10:.1f} | {e2e_pre_p:.1f} |")
     md_lines.append(f"| Scratch End-to-End Training | N/A | {e2e_scr_5:.1f} | {e2e_scr_10:.1f} | {e2e_scr_p:.1f} |")
     md_lines.append(f"| Zero-Shot Crystallised Heuristic | {z_shot:.1f} | {z_shot:.1f} | {z_shot:.1f} | {cross_person_results['zero_shot_crystallised']['mean_peak_pressure_mmhg']:.1f} |")

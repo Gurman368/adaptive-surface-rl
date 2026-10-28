@@ -146,7 +146,7 @@ def run_action_space_benchmark(
     checkpoint_dir: str = "checkpoints",
 ) -> Dict[str, Dict[str, List[float]]]:
     """Compare Action Space Architectures:
-    1. Crystallised + Learned Residual (WATER Architecture)
+    1. Crystallised + Learned Residual (Proposed Architecture)
     2. Naive End-to-End Continuous RL
     3. Crystallised Baseline Heuristic
     """
@@ -155,8 +155,8 @@ def run_action_space_benchmark(
 
     benchmark_results = {}
 
-    # 1. Crystallised + Learned Residual (WATER)
-    print("\n[Benchmark 1/3] Training Crystallised + Learned Residual (WATER Architecture)...")
+    # 1. Crystallised + Learned Residual (Proposed)
+    print("\n[Benchmark 1/3] Training Crystallised + Learned Residual (Proposed Architecture)...")
     env_crys = AdaptiveSurfaceEnv(
         max_steps_per_episode=config["training"]["max_steps_per_episode"],
         action_mode=ActionSpaceMode.CRYSTALLISED_PLUS_RESIDUAL,
@@ -176,7 +176,7 @@ def run_action_space_benchmark(
         checkpoint_dir=checkpoint_dir,
         model_name="sac_crystallised_residual",
     )
-    benchmark_results["Crystallised + Residual (WATER)"] = hist_crys
+    benchmark_results["Crystallised + Residual (Proposed)"] = hist_crys
 
     # Visualize and save final state from Crystallised + Residual
     obs, info = env_crys.reset(seed=42)
